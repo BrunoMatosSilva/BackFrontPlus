@@ -101,5 +101,6 @@ extension HomeVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        dismissKeyBoard()
     }
 }
