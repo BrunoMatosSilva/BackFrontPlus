@@ -8,13 +8,34 @@
 import UIKit
 
 class HomeViewControllerScreen: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(CardViewTableViewCell.self, forCellReuseIdentifier: CardViewTableViewCell.identifier)
+        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView()
+        tableView.showsVerticalScrollIndicator = false
+        return tableView
+    }()
+    
+    public func configTableViewProtocols(delegate:UITableViewDelegate, dataSource:UITableViewDataSource) {
+        self.tableView.delegate = delegate
+        self.tableView.dataSource = dataSource
     }
-    */
-
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(self.tableView)
+        self.setupConstraints()
+    }
+    
+    private func setupConstraints() {
+        self.tableView.pin(to: self)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
